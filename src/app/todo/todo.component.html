@@ -1,0 +1,16 @@
+<div class="container">
+    <div [ngClass]="['d-flex']">
+        <label for="add todo" class="m-2">add todo</label>
+        <input type="text" [(ngModel)]="ipValue" [ngClass]="['m-2']">
+        <!-- <p>Input is-{{ipValue}}</p> -->
+        <button type="button" (click)="addtodo()" [ngClass]="['btn']">Add todo</button>
+    </div>
+
+    <div *ngFor="let todo of tasks;let i=index" [ngClass]="['d-flex']" [ngStyle]="{'align-items':'center','justify-content':'space-between'}">
+        <div class="d-flex">
+            <input type="checkbox" [ngStyle]="{'accent-color':'green','width':'20px'}" class="m-2" [(ngModel)]="todo.isCompleted" (change)="saveToLocalStorage()">
+            <h3 [ngStyle]="{'text-decoration':todo.isCompleted ? 'line-through':'none'}">{{todo.title}}</h3>
+        </div>
+        <i class="fa-solid fa-xmark fa-2" (click)="delete(i)"></i>
+    </div>
+</div>
